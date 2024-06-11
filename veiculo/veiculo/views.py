@@ -1,51 +1,65 @@
-from .classes.motor import Motor
-from .classes.pneu import Pneu
-from .classes.cambio import Cambio
-from .classes.carro import Carro
 from django.http import HttpResponse
+from .carro_pb import Carro, Motor, Pneu
+from .instance import c, m, p, ca
 
-cambio = Cambio()
-motor = Motor(200, cambio)
-lista_pneus = [Pneu(205, 55) for _ in range(4)]
-carro = Carro('Fusca', 'Azul', motor, lista_pneus)
+carro = Carro()
+motor = Motor()
+pneu = Pneu()
 
 
 def acelerar(request):
-    velocidade = carro.acelerar()
-    return HttpResponse(velocidade)
+    velocidade = str(ca.acelerar())
+    motor.velocidade = velocidade
+    return HttpResponse(bytes(motor))
 
 
 def reduzir(request):
-    velocidade = carro.frear()
-    return HttpResponse(velocidade)
+    velocidade = str(ca.frear())
+    motor.velocidade = velocidade
+    return HttpResponse(bytes(motor))
 
 
 def ligar(request):
-    enginicao = carro.ligar()
-    return HttpResponse('ligado' if enginicao else 'desligado')
+    enginicao = ca.ligar()
+    motor.ligado = enginicao
+    return HttpResponse(bytes(motor))
 
 
 def desligar(request):
-    enginicao = carro.desligar()
-    return HttpResponse(enginicao)
+    enginicao = ca.desligar()
+    motor.ligado = enginicao
+    return HttpResponse(bytes(motor))
 
 
 def obter_velocidade(request):
-    velocidade = carro.obter_velocidade()
-    return HttpResponse(velocidade)
+    velocidade = str(ca.obter_velocidade())
+    motor.velocidade = velocidade
+    return HttpResponse(bytes(motor))
 
 
 def obter_marcha(request):
-    marcha = carro.obter_marcha()
-    return HttpResponse(marcha)
+    marcha = ca.obter_marcha()
+    motor.marcha = marcha
+    return HttpResponse(bytes(motor))
 
 
 def obter_estado(request):
-    enginicao = carro.motor.obter_estado()
-    print(enginicao)
-    return HttpResponse('ligado' if enginicao else 'desligado')
+    enginicao = ca.motor.obter_estado()
+    motor.ligado = enginicao
+    return HttpResponse(bytes(motor))
 
 
 def obter_rotacao_pneu(request):
-    rotacao = carro.obter_rotacao_pneu()
-    return HttpResponse(rotacao)
+    rotacao = ca.obter_rotacao_pneu()
+    pneu.rotacao = rotacao
+    return HttpResponse(pneu.SerializeToString)
+
+def obter_modelo(request):
+    modelo = ca.modelo
+    carro.modelo = modelo
+    return HttpResponse(carro.SerializeToString)
+
+def obter_cor(request):
+    cor = ca.cor
+    carro.cor = cor
+    return HttpResponse(carro.SerializeToString)
