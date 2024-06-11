@@ -2,6 +2,9 @@ class Cambio:
     def __init__(self, marcha_atual=0):
         self.marcha_atual = marcha_atual
 
+    def get_marca_atual(self):
+        return self.marcha_atual
+
     def atualizar_marcha(self, aceleracao):
         if aceleracao < 0:
             self.marcha_atual -= 1
