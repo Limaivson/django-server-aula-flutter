@@ -10,39 +10,41 @@ class Motor:
 
     def ligar(self):
         if self.ligado:
-            return 'Atenção: Motor já está ligado'
+            return True
         else:
             self.ligado = True
+            self.aceleracao = 0
             return self.ligado
 
     def desligar(self):
         if not self.ligado:
-            return 'Atenção: Motor já está desligado'
+            return False
         else:
             self.ligado = False
+            self.aceleracao = 0
             return self.ligado
 
     def acelerar(self):
         if self.ligado:
             if self.aceleracao >= 200:
-                return 'Atenção: Aceleração máxima atingida'
+                return self.aceleracao
             else:
                 self.aceleracao += 10
                 self.cambio.atualizar_marcha(self.aceleracao)
                 return self.aceleracao
         else:
-            return 'Atenção: Motor desligado'
+            return self.aceleracao
 
     def reduzir(self):
         if self.ligado:
             if self.aceleracao <= -50:
-                return 'Atenção: Velocidade máxima da ré atingida'
+                return self.aceleracao
             else:
                 self.aceleracao -= 10
                 self.cambio.atualizar_marcha(self.aceleracao)
                 return self.aceleracao
         else:
-            return 'Atenção: Motor desligado'
+            return self.aceleracao
 
     def obter_estado(self):
         return self.ligado
@@ -51,7 +53,7 @@ class Motor:
         return self.aceleracao
 
     def obter_marcha(self):
-        return self.cambio.marcha_atual
+        return self.cambio.get_marca_atual()
 
     def obter_potencia(self):
         return self.potencia
