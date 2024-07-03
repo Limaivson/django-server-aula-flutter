@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package carro_pb;
+
+message Carro {
+  string modelo = 1;
+  string cor = 2;
+}
+
+message Motor {
+  int32 marcha = 1;
+  string velocidade = 2;
+  bool ligado = 3;
+}
+
+message Pneu {
+  int32 rotacao = 1;
+}
