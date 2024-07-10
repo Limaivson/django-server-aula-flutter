@@ -38,7 +38,7 @@ class Veiculo(ABC):
     @abstractmethod
     def atualizar_rotacao_pneu(self):
         for pneu in self.rodas:
-            pneu.atualiza_rotacoes(self.motor.obter_forca()*self.motor.obter_marcha()*200)/pneu.tamanho
+            pneu.atualiza_rotacoes((self.motor.obter_forca()*self.motor.obter_marcha()*200)//pneu.tamanho())
 
     @abstractmethod
     def __str__(self):

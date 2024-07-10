@@ -9,4 +9,4 @@ class Pneu:
         return self.rotacoes
 
     def tamanho(self):
-        return (self.largura*self.raio)/10
+        return (self.largura*self.raio)//10

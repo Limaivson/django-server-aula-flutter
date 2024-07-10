@@ -17,6 +17,7 @@ class Carro(Veiculo, ABC):
         return f'Carro {self.modelo} de cor {self.cor}'
 
     def acelerar(self):
+        self.atualizar_rotacao_pneu()
         return self.motor.acelerar()
 
     def frear(self):
