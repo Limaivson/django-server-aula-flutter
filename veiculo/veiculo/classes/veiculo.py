@@ -21,11 +21,11 @@ class Veiculo(ABC):
 
     @abstractmethod
     def ligar(self):
-        self.motor.ligar()
+        return self.motor.ligar()
 
     @abstractmethod
     def desligar(self):
-        self.motor.desligar()
+        return self.motor.desligar()
 
     @abstractmethod
     def obter_velocidade(self):

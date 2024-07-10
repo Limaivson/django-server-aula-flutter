@@ -22,10 +22,10 @@ class Carro(Veiculo):
         super().frear()
 
     def ligar(self):
-        super().ligar()
+        return super().ligar()
 
     def desligar(self):
-        super().desligar()
+        return super().desligar()
 
     def obter_velocidade(self):
         return super().obter_velocidade()
