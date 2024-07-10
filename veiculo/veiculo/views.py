@@ -51,15 +51,5 @@ def obter_estado(request):
 
 def obter_rotacao_pneu(request):
     rotacao = ca.obter_rotacao_pneu()
-    pneu.rotacao = rotacao
-    return HttpResponse(pneu.SerializeToString)
-
-def obter_modelo(request):
-    modelo = ca.modelo
-    carro.modelo = modelo
-    return HttpResponse(carro.SerializeToString)
-
-def obter_cor(request):
-    cor = ca.cor
-    carro.cor = cor
-    return HttpResponse(carro.SerializeToString)
+    pneu.rotacao = int(rotacao)
+    return HttpResponse(bytes(pneu))

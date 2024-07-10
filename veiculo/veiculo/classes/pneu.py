@@ -8,5 +8,6 @@ class Pneu:
         self.rotacoes = rotacoes
         return self.rotacoes
 
+    @property
     def tamanho(self):
         return (self.largura*self.raio)/10
