@@ -36,3 +36,6 @@ class Carro(Veiculo, ABC):
 
     def obter_rotacao_pneu(self):
         return self.pneus[0].rotacoes
+
+    def atualizar_rotacao_pneu(self):
+        super().atualizar_rotacao_pneu()
