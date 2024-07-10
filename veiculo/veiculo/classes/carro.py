@@ -1,42 +1,41 @@
-from abc import ABC
 from typing import List
 from .veiculo import Veiculo
 from .motor import Motor
 from .pneu import Pneu
 
 
-class Carro(Veiculo, ABC):
+class Carro(Veiculo):
     def __init__(self, modelo, cor, motor: Motor, pneus: List[Pneu]):
         super().__init__(motor, pneus)
         self.modelo = modelo
         self.cor = cor
-        self.motor = motor
-        self.pneus = pneus
+        # self.motor = motor
+        # self.pneus = pneus
 
     def __str__(self):
         return f'Carro {self.modelo} de cor {self.cor}'
 
     def acelerar(self):
-        self.atualizar_rotacao_pneu()
-        return self.motor.acelerar()
+        super().acelerar()
 
     def frear(self):
-        return self.motor.reduzir()
+        super().frear()
 
     def ligar(self):
-        return self.motor.ligar()
+        super().ligar()
 
     def desligar(self):
-        return self.motor.desligar()
+        super().desligar()
 
     def obter_velocidade(self):
-        return self.motor.obter_aceleracao()
+        return super().obter_velocidade()
 
     def obter_marcha(self):
-        return self.motor.obter_marcha()
+        return super().obter_marcha()
 
     def obter_rotacao_pneu(self):
-        return self.pneus[0].rotacoes
+        return self.rodas[0].rotacoes
+
 
     def atualizar_rotacao_pneu(self):
         super().atualizar_rotacao_pneu()
