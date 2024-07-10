@@ -40,6 +40,7 @@ class Veiculo(ABC):
         for pneu in self.rodas:
             pneu.atualiza_rotacoes((self.motor.obter_forca()*self.motor.obter_marcha()*200)/pneu.tamanho)
 
+
     @abstractmethod
     def __str__(self):
         pass

@@ -10,4 +10,4 @@ class Pneu:
 
     @property
     def tamanho(self):
-        return (self.largura*self.raio)/10
+        return (self.largura*self.raio)//10
